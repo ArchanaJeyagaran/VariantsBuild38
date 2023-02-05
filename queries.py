@@ -49,27 +49,26 @@ def filter_initial_query(chromosome, start, end):
         for row in result:
             print(row)
 
-most_variants_query()
 # this query returns the chromosome with the most variants
 # it takes no parameters 
+most_variants_query()
 
-first_variant_query()
 # this query returns the first variant from each each chromosome
 # it takes no parameters
+first_variant_query()
 
-common_variant_chrom_query()
 # this query returns the most common variant type per chromosome
 # it takes no parameters 
+common_variant_chrom_query()
 
-common_variant_all_query()
 # this query returns the most common variant type overall
 # it takes no parameters 
+common_variant_all_query()
 
-genes_most_variant_query()
 # this query returns the top 5 most common variant type overall
 # it takes no parameters 
+genes_most_variant_query()
 
-# filter_initial_query()
 # this query filters the data by chromosome, start position, and end position
 # the user specifies the chromosome as a string, and start and end positions as an integer
-# ex. filter_initial_query('10', 40000, 100000)
+filter_initial_query('10', 40000, 100000)
