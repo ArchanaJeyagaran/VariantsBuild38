@@ -1,6 +1,14 @@
 from sql_dataframe import  engine
 from sqlalchemy import text
 
+# query that accepts the chromosomal and segment position as parameters
+def filter_initial_query(chromosome, start, end):
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM variant_data WHERE CHROM == " + chromosome + " AND " + str(start) + " < START AND " + str(end) +" > END"))
+
+        for row in result:
+            print(row)
+
 # chromosome with most variants  
 def most_variants_query():
     with engine.connect() as conn:
@@ -41,13 +49,10 @@ def genes_most_variant_query():
         for row in result:
             print(row)
 
-# query that accepts the chromosomal and segment position as parameters
-def filter_initial_query(chromosome, start, end):
-    with engine.connect() as conn:
-        result = conn.execute(text("SELECT * FROM variant_data WHERE CHROM == " + chromosome + " AND " + str(start) + " < START AND " + str(end) +" > END"))
 
-        for row in result:
-            print(row)
+# this query filters the data by chromosome, start position, and end position
+# the user specifies the chromosome as a string, and start and end positions as an integer
+filter_initial_query('10', 40000, 100000)
 
 # this query returns the chromosome with the most variants
 # it takes no parameters 
@@ -69,6 +74,3 @@ common_variant_all_query()
 # it takes no parameters 
 genes_most_variant_query()
 
-# this query filters the data by chromosome, start position, and end position
-# the user specifies the chromosome as a string, and start and end positions as an integer
-filter_initial_query('10', 40000, 100000)
